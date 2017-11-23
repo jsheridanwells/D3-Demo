@@ -1,3 +1,3 @@
 # D3-Demo
 
- A reporitory for a presentation on D3
+ A repository for a presentation on D3
