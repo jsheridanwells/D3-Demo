@@ -9,3 +9,9 @@
 svg {
   border: 1px solid #000;
 }
+
+.line {
+    fill: none;
+    stroke: red;
+    stroke-width: 3;
+}
