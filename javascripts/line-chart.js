@@ -1,5 +1,3 @@
-getWeather('53213').then(data => drawChart(getTemps(data, 'temp_max')));
-
 const drawChart = (arr) => {
 
   let margin = {top: 50, right: 50, bottom: 50, left: 50},

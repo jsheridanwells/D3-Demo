@@ -13,6 +13,8 @@ const getTemps = (data, type) => {
 };
 
 $('#submit').click(() => {
-  getWeather(zip).then(data => {
-    console.log(data, getTemps(data, 'temp_min'), getTemps(data, 'temp_max'))})
+  getWeather(zip)
+    .then(data => {
+      drawChart(getTemps(data, 'temp_max'));
+    });
 });
