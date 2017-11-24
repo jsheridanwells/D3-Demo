@@ -5,6 +5,7 @@ const getWeather = (zip) => {
     $.ajax({
         url: `https://api.openweathermap.org/data/2.5/forecast?zip=${zip},us&APPID=${api}&units=imperial`
       })
-    .done(data => resolve(data));
+    .then(data => resolve(data))
+    .catch(error => reject(error.responseJSON.message));
   });
 };

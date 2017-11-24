@@ -1,8 +1,6 @@
 'use strict';
 
-let zip = $('#zip-input').val();
-
-// checks data array from openweather.org
+// takes raw JSON from openweather.org
 // returns array of temperatures for given type: temp, temp_min, or temp_max
 const getTemps = (data, type) => {
   let temps = [];
@@ -13,8 +11,13 @@ const getTemps = (data, type) => {
 };
 
 $('#submit').click(() => {
+  $('#chart').empty();
+  let zip = $('#zip-input').val();
   getWeather(zip)
     .then(data => {
-      drawChart(getTemps(data, 'temp_max'));
+      drawChart(getTemps(data, 'temp'));
+    })
+    .catch(error => {
+      $('#chart').html(`<p>${error}</p>`);
     });
 });
