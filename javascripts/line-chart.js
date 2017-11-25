@@ -15,14 +15,14 @@ const drawChart = (arr) => {
 
   //function to set scale for y-axis, mapped from 0 to highest temperature + 10
   let yScale = d3.scaleLinear()
-      .domain([0, d3.max(arr, d => d.temp) + 10])
+      .domain([0, d3.max(arr, d => d.temp_max) + 10])
       .range([height, 0]);
 
   //function to create line coordinates for each datum
   //x is time, y is temperature
-  let line = d3.line()
+  let line_max = d3.line()
       .x(d => xScale(d.time))
-      .y(d => yScale(d.temp));
+      .y(d => yScale(d.temp_max));
 
   //create SVG appended to #chart, dimensions come from values set above
   let svg = d3.select('#chart').append('svg')
@@ -52,7 +52,7 @@ const drawChart = (arr) => {
   svg.append('path')
       .datum(arr)
       .attr('class', 'line')
-      .attr('d', line);
+      .attr('d', line_max);
 
   //append dots for each temperature
   svg.selectAll('.dot')
@@ -60,6 +60,6 @@ const drawChart = (arr) => {
       .enter().append('circle')
       .attr('class', 'dot')
       .attr('cx', (d) => xScale(d.time))
-      .attr('cy', (d) => yScale(d.temp))
+      .attr('cy', (d) => yScale(d.temp_max))
       .attr('r', 2);
 }

@@ -17,14 +17,19 @@
        <h1>Weather Chart</h1>
      </div>
      <div class="col-md-8">
-       Enter a zip code for the weather you want to view: <br>
-       <input type="text" id="zip-input" value="37206">
+       Enter a zip code for the 5-day forecast: <br>
+       <input type="text" id="zip-input">
        <button id="submit" class="btn btn-primary">Submit</button>
      </div>
     </nav>
 
     <div class="container-fluid">
-      <div id="chart"></div>
+      <div class="city">
+        <p>5-day forecast for <strong><span id="city"></span></strong></p>
+      </div>
+      <div id="chart">
+
+      </div>
     </div>
 
     <!-- JS for Bootstrap -->
