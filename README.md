@@ -27,7 +27,7 @@ $ git clone https://github.com/jsheridanwells/D3-Demo.git
 2. Change to the D3-Demo directory
 ```
 cd D3-Demo
-``
+```
 3. Start http-server. This will open your browser to the index at `http://localhost:8080`
 ```
 $ http-server -o
