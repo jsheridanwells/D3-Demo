@@ -10,7 +10,6 @@ const sortTimeTemps = (data) => {
       temp_max: list.main.temp_max
     });
   });
-  console.log(timeTemps);
   return timeTemps;
 };
 
