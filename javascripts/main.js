@@ -2,12 +2,13 @@
 
 // takes raw JSON from openweather.org
 // returns array of temperatures for given type: temp, temp_min, or temp_max
-const getTemps = (data, type) => {
-  let temps = [];
+const getTimeTemps = (data, type) => {
+  let timeTemps = [];
   data.list.forEach((list) => {
-    temps.push(list.main[type]);
+    timeTemps.push({time: list.dt, temp: list.main[type]});
   });
-  return temps;
+  console.log(timeTemps);
+  return timeTemps;
 };
 
 $('#submit').click(() => {
@@ -15,7 +16,8 @@ $('#submit').click(() => {
   let zip = $('#zip-input').val();
   getWeather(zip)
     .then(data => {
-      drawChart(getTemps(data, 'temp'));
+      console.log(data);
+      drawChart(getTimeTemps(data, 'temp'));
     })
     .catch(error => {
       $('#chart').html(`<p>${error}</p>`);

@@ -1,26 +1,32 @@
+// borrowed heavily from this chart:
+// https://bl.ocks.org/pstuffa/26363646c478b2028d36e7274cedefa6
+
 const drawChart = (arr) => {
+  // parse the date / time
+  let parseTime = d3.timeFormat("%B %d %I %p");
+  let timesArr = arr.map(item => parseTime(item.time * 1000));
+  let tempsArr = arr.map(item => item.temp);
+
+  console.log(timesArr);
 
   let margin = {top: 50, right: 50, bottom: 50, left: 50},
     width = $('#chart').width() - margin.left - margin.right,
-    height = window.innerHeight - margin.top - margin.bottom;
+    height = window.innerHeight - margin.top - margin.bottom - $('#nav').height();
 
-  let n = arr.length;
-
-  let xScale = d3.scaleLinear()
-      .domain([0, n-1])
+  let xScale = d3.scaleTime()
+      .domain([0, timesArr.length])
       .range([0, width]);
 
   let yScale = d3.scaleLinear()
-      .domain([0, d3.max(arr) + 10])
+      .domain([0, d3.max(tempsArr) + 10])
       .range([height, 0]);
+
 
   let line = d3.line()
       .x(function(d, i) { return xScale(i); })
-      .y(function(d) { return yScale(d.y); });
+      .y(function(d) { return yScale(d.temp); });
 
-  let dataset = arr.map(d => {
-    return {'y' : d};
-  });
+  let dataset = arr;
 
   let svg = d3.select('#chart').append('svg')
       .attr('width', width + margin.left + margin.right)
@@ -47,6 +53,6 @@ const drawChart = (arr) => {
       .enter().append('circle')
       .attr('class', 'dot')
       .attr('cx', function(d, i) { return xScale(i) })
-      .attr('cy', function(d) { return yScale(d.y) })
+      .attr('cy', function(d) { return yScale(d.temp) })
       .attr('r', 5);
 }
