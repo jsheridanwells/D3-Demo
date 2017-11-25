@@ -19,14 +19,15 @@ $ npm install http-server -g
 
 Follow these instructions to create a directory and to download the starter files:
 
-1. Create a directory and navigate inside:
-```
-$ mkdir d3-weather && cd $_
-```
-2. Clone this repository
+
+1. Clone this repository into a directory of your choice.
 ```
 $ git clone https://github.com/jsheridanwells/D3-Demo.git
 ```
+2. Change to the D3-Demo directory
+```
+cd D3-Demo
+``
 3. Start http-server. This will open your browser to the index at `http://localhost:8080`
 ```
 $ http-server -o
