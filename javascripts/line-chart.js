@@ -12,19 +12,16 @@ const drawChart = (arr) => {
     height = window.innerHeight - margin.top - margin.bottom - $('#nav').height();
 
   let xScale = d3.scaleTime()
-      .domain(d3.extent(timesArr, (d) => d))
+      .domain(d3.extent(arr, d => d.time))
       .range([0, width]);
 
   let yScale = d3.scaleLinear()
-      .domain([0, d3.max(tempsArr) + 10])
+      .domain([0, d3.max(arr, d => d.temp) + 10])
       .range([height, 0]);
 
-
   let line = d3.line()
-      .x((d) => xScale(d.time))
-      .y((d) => yScale(d.temp));
-
-  let dataset = arr;
+      .x(d => xScale(d.time))
+      .y(d => yScale(d.temp));
 
   let svg = d3.select('#chart').append('svg')
       .attr('width', width + margin.left + margin.right)
@@ -33,12 +30,11 @@ const drawChart = (arr) => {
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
   svg.append('g')
-      .attr('class', 'x axis')
       .attr('transform', 'translate(0,' + height + ')')
-      .call(d3.axisBottom(xScale).ticks(d3.timeHour.every(6)));
+      .call(d3.axisBottom(xScale)
+      .ticks(d3.timeHour.every(6)));
 
   svg.append('g')
-      // .attr('class', 'y axis')
       .call(d3.axisLeft(yScale))
       .append('text')
       .attr('fill', '#000')
@@ -49,15 +45,15 @@ const drawChart = (arr) => {
       .text('Temperature (F)');
 
   svg.append('path')
-      .datum(dataset)
+      .datum(arr)
       .attr('class', 'line')
       .attr('d', line);
 
   svg.selectAll('.dot')
-      .data(dataset)
+      .data(arr)
       .enter().append('circle')
       .attr('class', 'dot')
-      .attr('cx', function(d, i) { return xScale(d.time) })
-      .attr('cy', function(d) { return yScale(d.temp) })
+      .attr('cx', (d) => xScale(d.time))
+      .attr('cy', (d) => yScale(d.temp))
       .attr('r', 2);
 }
