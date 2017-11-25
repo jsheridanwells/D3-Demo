@@ -2,7 +2,7 @@
 
 This repo contains boilerplate code for an introduction to the D3.js library. D3 is a javascript library that uses HTML, CSS, and SVG to bind data to DOM elements making possible an unlimited variety of data visualizations.
 
-The code in this repo can be used to create line charts showing 5-day weather forecasts for any given US zip code.
+The code in this repo can be used to create line charts showing 5-day weather forecasts for any given US zip code. A deployed example of this app can be found at [http://d3-weather-chart.surge.sh/](http://d3-weather-chart.surge.sh/).
 
 The branch `master` contains boilerplate code that we can add D3 methods to. The `Final` branch contains the final result. The D3 methods to create the line charts can be found at [https://gist.github.com/jsheridanwells/fc18e1bd39624f9c995f8ffcd48b3ad0](https://gist.github.com/jsheridanwells/fc18e1bd39624f9c995f8ffcd48b3ad0).
 
