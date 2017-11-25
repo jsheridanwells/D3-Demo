@@ -13,6 +13,9 @@ const sortTimeTemps = (data) => {
   return timeTemps;
 };
 
+//When submit button is clicked,
+// Passes in value from zip code field, makes API call,
+// Sorts api data, passes data to drawChart function
 $('#submit').click(() => {
   $('#chart').empty();
   let zip = $('#zip-input').val();

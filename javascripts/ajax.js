@@ -1,5 +1,6 @@
 'use strict';
 
+// API call to OpenWeatherMap.org, takes in zip code input from main controller
 const getWeather = (zip) => {
   return new Promise((resolve, reject) => {
     $.ajax({
