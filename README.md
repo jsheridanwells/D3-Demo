@@ -4,14 +4,20 @@ This repo contains boilerplate code for an introduction to the D3.js library. D3
 
 The code in this repo can be used to create line charts showing 5-day weather forecasts for any given US zip code.
 
-The branch `master` contains boilerplate code that we can add D3 methods to. The `Final` branch contains the final result. In addition to D3, this library uses jQuery for AJAX requests and Bootstrap for styling. The data for this project comes from the [OpenWeatherMap.org API.](https://openweathermap.org/api)
+The branch `master` contains boilerplate code that we can add D3 methods to. The `Final` branch contains the final result. The D3 methods to create the line charts can be found at [https://gist.github.com/jsheridanwells/fc18e1bd39624f9c995f8ffcd48b3ad0](https://gist.github.com/jsheridanwells/fc18e1bd39624f9c995f8ffcd48b3ad0).
 
-## Installation and Setup
+
+In addition to D3, this library uses jQuery for AJAX requests and Bootstrap for styling. The data for this project comes from the [OpenWeatherMap.org API.](https://openweathermap.org/api)
+
+## Getting Started
 In order to make AJAX requests, you will need a local development server.  [Http-server](https://www.npmjs.com/package/http-server) is a very easy option. 
-1. To install run:
+
+To install http-server, run:
 ```
 $ npm install http-server -g
 ```
+
+Follow these instructions to create a directory and to download the starter files:
 
 1. Create a directory and navigate inside:
 ```
@@ -26,3 +32,18 @@ $ git clone https://github.com/jsheridanwells/D3-Demo.git
 $ http-server -o
 ```
 
+Lastly, to get data from OpenWeatherMap, you will need to get a free API key and include that in the application files: 
+1. [Sign up for an API key](http://openweathermap.org/appid).
+
+2. Create a file called `api.js` in the `javascripts` directory:
+```
+$ touch javascripts/api.js
+```
+3. Open the `api.js` file in a text editor and paste the following code, replacing `[YOUR API KEY]` with the API key that you received from OpenWeatherMap.org:
+```
+'use strict';
+
+// holds OpenWeatherMap.org api key
+let api = '[YOUR API KEY]';
+```
+Once your API key is saved, if you refresh the browser, open your developer tools console, and enter a zipcode in the input field, you should see a console log with data received from OpenWeatherMap.org.
