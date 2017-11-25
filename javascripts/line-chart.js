@@ -2,10 +2,6 @@
 // https://bl.ocks.org/pstuffa/26363646c478b2028d36e7274cedefa6
 
 const drawChart = (arr) => {
-  let timesArr = arr.map(item => item.time);
-  let tempsArr = arr.map(item => item.temp);
-
-  console.log(timesArr);
 
   let margin = {top: 50, right: 50, bottom: 50, left: 50},
     width = $('#chart').width() - margin.left - margin.right,
