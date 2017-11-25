@@ -2,9 +2,7 @@
 // https://bl.ocks.org/pstuffa/26363646c478b2028d36e7274cedefa6
 
 const drawChart = (arr) => {
-  // parse the date / time
-  let parseTime = d3.timeFormat("%B %d %I %p");
-  let timesArr = arr.map(item => parseTime(item.time * 1000));
+  let timesArr = arr.map(item => item.time);
   let tempsArr = arr.map(item => item.temp);
 
   console.log(timesArr);
@@ -14,7 +12,7 @@ const drawChart = (arr) => {
     height = window.innerHeight - margin.top - margin.bottom - $('#nav').height();
 
   let xScale = d3.scaleTime()
-      .domain([0, timesArr.length])
+      .domain(d3.extent(timesArr, (d) => d))
       .range([0, width]);
 
   let yScale = d3.scaleLinear()
@@ -23,8 +21,8 @@ const drawChart = (arr) => {
 
 
   let line = d3.line()
-      .x(function(d, i) { return xScale(i); })
-      .y(function(d) { return yScale(d.temp); });
+      .x((d) => xScale(d.time))
+      .y((d) => yScale(d.temp));
 
   let dataset = arr;
 
@@ -37,11 +35,18 @@ const drawChart = (arr) => {
   svg.append('g')
       .attr('class', 'x axis')
       .attr('transform', 'translate(0,' + height + ')')
-      .call(d3.axisBottom(xScale));
+      .call(d3.axisBottom(xScale).ticks(d3.timeHour.every(6)));
 
   svg.append('g')
-      .attr('class', 'y axis')
-      .call(d3.axisLeft(yScale));
+      // .attr('class', 'y axis')
+      .call(d3.axisLeft(yScale))
+      .append('text')
+      .attr('fill', '#000')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', 6)
+      .attr('dy', '0.71em')
+      .attr('text-anchor', 'end')
+      .text('Temperature (F)');
 
   svg.append('path')
       .datum(dataset)
@@ -52,7 +57,7 @@ const drawChart = (arr) => {
       .data(dataset)
       .enter().append('circle')
       .attr('class', 'dot')
-      .attr('cx', function(d, i) { return xScale(i) })
+      .attr('cx', function(d, i) { return xScale(d.time) })
       .attr('cy', function(d) { return yScale(d.temp) })
-      .attr('r', 5);
+      .attr('r', 2);
 }

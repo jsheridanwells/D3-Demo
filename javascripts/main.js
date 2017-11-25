@@ -5,7 +5,7 @@
 const getTimeTemps = (data, type) => {
   let timeTemps = [];
   data.list.forEach((list) => {
-    timeTemps.push({time: list.dt, temp: list.main[type]});
+    timeTemps.push({time: list.dt * 1000, temp: list.main[type]});
   });
   console.log(timeTemps);
   return timeTemps;
