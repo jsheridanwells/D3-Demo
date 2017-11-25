@@ -49,7 +49,7 @@ const drawChart = (arr) => {
       .text('Temperature (F)');
 
   //append path, moves in direction set by values in line
-  svg.append('path')
+  let path = svg.append('path')
       .datum(arr)
       .attr('class', 'line')
       .attr('d', line_max);
