@@ -10,6 +10,10 @@ The branch `master` contains boilerplate code that we can add D3 methods to. The
 In addition to D3, this library uses jQuery for AJAX requests and Bootstrap for styling. The data for this project comes from the [OpenWeatherMap.org API.](https://openweathermap.org/api)
 
 ## Getting Started
+
+You will need to have [Node.js](https://www.npmjs.com/) and [NPM](https://www.npmjs.com/) installed.
+
+
 In order to make AJAX requests, you will need a local development server.  [Http-server](https://www.npmjs.com/package/http-server) is a very easy option. 
 
 To install http-server, run:
